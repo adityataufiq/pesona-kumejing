@@ -1,32 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="white"
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Logo Kumejing"
+          class="shrink mr-2"
+          contain
+          src="./assets/logo-kumejing.png"
+          transition="scale-transition"
+          width="40"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <div
+        class="hidden-sm-and-down"
+        v-for="nav in navs"
+        :key="nav.title"
+      >
+        <v-btn
+          :href="nav.route"
+          text
+        >
+          <span class="mr-2">{{ nav.title }}</span>
+        </v-btn>
+      </div>
+    </v-app-bar>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    navs: [
+      {title: 'beranda', route: '#beranda'},
+      {title: 'tentang', route: '#tentang'},
+      {title: 'fasilitas', route: '#fasilitas'},
+      {title: 'paket', route: '#paket'},
+      {title: 'kontak', route: '#kontak'},
+    ]
+  }),
+};
+</script>
